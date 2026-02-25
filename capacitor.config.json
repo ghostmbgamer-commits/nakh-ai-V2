@@ -1,0 +1,6 @@
+{
+  "appId": "com.nakhai.app",
+  "appName": "Nakh AI",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
