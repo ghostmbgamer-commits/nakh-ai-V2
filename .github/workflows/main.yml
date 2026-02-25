@@ -1,4 +1,4 @@
-name: Build & Sign APK Official
+name: Build and Sign APK Official
 on:
   push:
     branches: [ "main" ]
@@ -7,16 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       
-      # تنظیم نسخه نود جی اس روی 22 برای رفع ارور Fatal
-      - name: set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      # تنظیم جاوا روی 21 برای خروجی رسمی
-      - name: set up JDK 21
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
@@ -39,8 +38,7 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleRelease
 
-      # امضای خودکار با استفاده از سکرت‌هایی که ساختی
-     - name: Sign APK
+      - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
@@ -50,7 +48,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         env:
-          BUILD_TOOLS_VERSION: "34.0.0" # اضافه کردن این خط برای معرفی نسخه جدید ابزارها
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Upload Final Signed APK
         uses: actions/upload-artifact@v4
