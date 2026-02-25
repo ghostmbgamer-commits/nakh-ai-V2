@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # این خط مشکل را حل می‌کند
+
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
