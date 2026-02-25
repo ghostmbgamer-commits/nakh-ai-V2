@@ -40,7 +40,7 @@ jobs:
           ./gradlew assembleRelease
 
       # امضای خودکار با استفاده از سکرت‌هایی که ساختی
-      - name: Sign APK
+     - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
@@ -49,6 +49,8 @@ jobs:
           alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0" # اضافه کردن این خط برای معرفی نسخه جدید ابزارها
 
       - name: Upload Final Signed APK
         uses: actions/upload-artifact@v4
