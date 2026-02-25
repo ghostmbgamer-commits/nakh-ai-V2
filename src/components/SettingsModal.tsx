@@ -88,11 +88,29 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, s
                 value={settings.systemPrompt}
                 onChange={(e) => onUpdateSettings({ ...settings, systemPrompt: e.target.value })}
                 className={cn(
-                  "w-full h-32 border rounded-lg p-3.5 text-[11px] focus:outline-none resize-none transition-all custom-scrollbar",
-                  isLight ? "bg-zinc-50 border-black/5 focus:border-black/20 text-black" : "bg-zinc-900/30 border-white/5 focus:border-white/20 text-zinc-300"
+                  "w-full h-32 border rounded-xl p-4 text-[11px] focus:outline-none resize-none transition-all custom-scrollbar",
+                  isLight ? "bg-zinc-50 border-black/5 focus:border-black/20 text-black" : "bg-zinc-900/50 border-white/5 focus:border-white/20 text-zinc-300"
                 )}
-                placeholder="Custom instruction..."
+                placeholder="Custom instruction (optional)..."
               />
+            </section>
+
+            {/* Accent Color */}
+            <section>
+              <h3 className="text-[9px] font-bold text-zinc-500 mb-3 uppercase tracking-[0.2em]">Accent Color</h3>
+              <div className="flex flex-wrap gap-2">
+                {['#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#ffffff'].map((color) => (
+                  <button
+                    key={color}
+                    onClick={() => onUpdateSettings({ ...settings, accentColor: color })}
+                    className={cn(
+                      "w-8 h-8 rounded-full border-2 transition-all active:scale-90",
+                      settings.accentColor === color ? "border-white scale-110 shadow-lg" : "border-transparent opacity-60 hover:opacity-100"
+                    )}
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
+              </div>
             </section>
 
              {/* Language */}
@@ -122,6 +140,23 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, s
                     English
                   </button>
               </div>
+            </section>
+
+            {/* Donation */}
+            <section>
+              <h3 className="text-[9px] font-bold text-zinc-500 mb-3 uppercase tracking-[0.2em]">Support</h3>
+              <a 
+                href="https://coffeebede.com/megabyte" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block w-full transition-opacity hover:opacity-90 active:scale-[0.98]"
+              >
+                <img 
+                  className="w-full h-auto rounded-xl shadow-lg border border-white/5" 
+                  src="https://coffeebede.ir/DashboardTemplateV2/app-assets/images/banner/default-yellow.svg" 
+                  alt="Donate"
+                />
+              </a>
             </section>
 
           </div>

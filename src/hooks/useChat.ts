@@ -151,16 +151,10 @@ export function useChat() {
       // { "role": "user", "parts": [{ "text": userMessage }] }
 
       const currentSettings = settingsRef.current;
-      const finalSystemPrompt = `IMPORTANT: You are Nakh AI (هوش مصنوعی نخ). 
-You MUST speak ONLY in Persian (فارسی). 
-DO NOT use Arabic or English unless specifically asked to translate.
-Use Persian characters (گ، چ، پ، ژ).
-Tone: Natural, friendly, helpful.
-
-User System Instruction: ${currentSettings.systemPrompt}
-
-Identity & Rules:
-${HIDDEN_IDENTITY_PROMPT}`;
+      const finalSystemPrompt = `تو "هوش مصنوعی نخ" هستی.
+${currentSettings.systemPrompt ? `دستورالعمل کاربر: ${currentSettings.systemPrompt}` : ''}
+${HIDDEN_IDENTITY_PROMPT}
+پاسخ‌ها باید خلاقانه و غیرتکراری باشند.`;
 
       const apiMessages = [
         { role: 'user', parts: [{ text: finalSystemPrompt }] },
