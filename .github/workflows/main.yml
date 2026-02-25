@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ] # اگر نام شاخه اصلی تو master است، اینجا را ویرایش کن
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -17,7 +17,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install @capacitor/cli @capacitor/core @capacitor/android
 
       - name: Build Web Project
         run: npm run build
